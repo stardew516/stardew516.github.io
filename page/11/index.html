@@ -206,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -216,7 +216,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            Kategorien
           </a>
         </li>
       
@@ -226,7 +226,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -236,7 +236,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/stardew/nginx-reinstall/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/stardew/weex-start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lu.wei">
@@ -302,7 +302,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/nginx-reinstall/" itemprop="url">nginx-reinstall</a></h2>
+                <a class="post-title-link" href="/weex-start/" itemprop="url">weex-start</a></h2>
         
 
         <div class="post-meta">
@@ -312,10 +312,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-04T10:55:00Z">
-                2016-05-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-24T00:00:00Z">
+                2017-07-24
               </time>
             
 
@@ -333,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/nginx-reinstall/#comments" itemprop="discussionUrl">
+                <a href="/weex-start/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="nginx-reinstall/" itemprop="commentCount"></span>
+                        data-disqus-identifier="weex-start/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,18 +365,68 @@
       
         
           
-            <h2 id="mac下重装nginx"><a href="#mac下重装nginx" class="headerlink" title="mac下重装nginx"></a>mac下重装nginx</h2><p>mac下彻底卸载nginx，并且重装。  </p>
-<ol>
-<li><p>nginx -s stop 停止nginx进程</p>
+            <h5 id="认识比较浅薄，单纯从使用方面入手，整理了两个半小时，有错误的地方还请指出。"><a href="#认识比较浅薄，单纯从使用方面入手，整理了两个半小时，有错误的地方还请指出。" class="headerlink" title="认识比较浅薄，单纯从使用方面入手，整理了两个半小时，有错误的地方还请指出。"></a>认识比较浅薄，单纯从使用方面入手，整理了两个半小时，有错误的地方还请指出。</h5><h1 id="1-构建项目"><a href="#1-构建项目" class="headerlink" title="1. 构建项目"></a>1. 构建项目</h1><p>创建一个项目之前，首先需要选取合适的工具，目前使用比较广的两个weex脚手架有weexpack和weex-toolkit。</p>
+<h4 id="weex-toolkit（创建的weex项目没有ios和android包）"><a href="#weex-toolkit（创建的weex项目没有ios和android包）" class="headerlink" title="weex-toolkit（创建的weex项目没有ios和android包）"></a>weex-toolkit（创建的weex项目没有ios和android包）</h4><ul>
+<li>weex init weex 创建项目</li>
+<li><p>修改weex.html文件，将<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- cnpm install 加载依赖包</div><div class="line">- package.json中的scripts配置```&quot;app&quot;: &quot;npm run build &amp; npm run dev &amp; npm run server&quot;</div></pre></td></tr></table></figure></p>
 </li>
-<li><p>which nginx 查看nginx所在目录  删除</p>
+<li><p>npm run app 启动项目</p>
 </li>
-<li><p>brew remove nginx</p>
-</li>
-<li><p>brew install nginx</p>
-</li>
-</ol>
-<h5 id="转自-mac下重装nginx"><a href="#转自-mac下重装nginx" class="headerlink" title="[转自] mac下重装nginx"></a>[转自] <a href="https://my.oschina.net/luweiweiwei/blog/669474" target="_blank" rel="external">mac下重装nginx</a></h5>
+</ul>
+<p>目录结构如下图：<br><img src="https://segmentfault.com/img/bVPAmL" alt="clipboard.png"></p>
+<h4 id="weexpack-（创建的weex项目有ios和android包）"><a href="#weexpack-（创建的weex项目有ios和android包）" class="headerlink" title="weexpack （创建的weex项目有ios和android包）"></a>weexpack （创建的weex项目有ios和android包）</h4><ul>
+<li>weexpack create weex 创建项目</li>
+<li>weexpack platform add android 添加android</li>
+<li>weexpack platform add ios 添加ios</li>
+<li>weexpack run ios 模拟器运行</li>
+</ul>
+<p>目录结构如下图：<br><img src="https://segmentfault.com/img/bVPAly" alt="clipboard.png"></p>
+<p>因为我们不打包android和ios，只需要将写好的页面打包成.weex.js文件供ios和android开发人员调用，所以采用了weex init的构建方式。</p>
+<h1 id="2-工具"><a href="#2-工具" class="headerlink" title="2. 工具"></a>2. 工具</h1><h4 id="Weex-Devtools"><a href="#Weex-Devtools" class="headerlink" title="Weex Devtools"></a>Weex Devtools</h4><p>Weex Devtools是Weex开发调试必备的神器，安装好后，终端进入到项目目录，运行weex debug 会自动打开页面</p>
+<p><img src="https://segmentfault.com/img/bVPAfS" alt="clipboard.png"></p>
+<p>扫二维码后</p>
+<p><img src="https://segmentfault.com/img/bVPAgs" alt="clipboard.png"></p>
+<p>点击Inspector可以看页面信息，我们打开Debugger，然后扫描打包好的js文件二维码就可以开始调试了。</p>
+<p><img src="https://segmentfault.com/img/bVPAgM" alt="clipboard.png"></p>
+<p>注： 箭头所指处选debugger，我因为手贱选了个别的，导致好几天console里没有内容提示，还以为版本问题，后来研究了下，发现这里选错了。</p>
+<h1 id="3-遇到的问题"><a href="#3-遇到的问题" class="headerlink" title="3. 遇到的问题"></a>3. 遇到的问题</h1><blockquote>
+<p>官方demo跑不通</p>
+<h5 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h5><p>高一点版本的weex-vue-render里index.js路径改变，导致。修改weex.html文件，将<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; 使用vue-resources获取接口数据, weex web上好的，但是weex-playground中跑不通，一片空白，错误信息：</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>[undefined:344:31] ReferenceError: Can’t find variable: document<br>addStyle<br>addStylesToDom<br>exports</p>
+<p><strong>webpack_require</strong></p>
+<p><strong>webpack_require</strong></p>
+<p><strong>webpack_require</strong></p>
+<p><strong>webpack_require</strong></p>
+<p>anonymous<br>a@main.js:4:16690<br>main.js:7:8740<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##### 解决：</div><div class="line">weex中不支持document和window，换成其它方式。weex不支持vue-resources，改成weex支持的fetch</div><div class="line">&gt; &lt;scroll&gt;里loading一直没效果</div><div class="line">##### 解决：</div><div class="line">&lt;scroll&gt;中使用refresh就没法用loading，去掉refresh模块</div><div class="line">&gt; webpack报错，错误信息 ```ERROR <span class="keyword">in</span> Entry <span class="keyword">module</span> not found: Error: Cannot resolve <span class="string">'file'</span> or <span class="string">'directory'</span> /Users/xx/xx/<span class="keyword">code</span>/weex/app.js <span class="keyword">in</span> /Users/xx/xx/<span class="keyword">code</span>/weex</div></pre></td></tr></table></figure></p>
+<h5 id="解决：-1"><a href="#解决：-1" class="headerlink" title="解决："></a>解决：</h5><p>开始一直以为是webpack入口没配置对，检查很多遍，各种测试后，发现这里真的没问题<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entry: entries</span></div><div class="line"><span class="attribute">entry</span>: &#123;</div><div class="line">  <span class="attribute">app</span>: path.resolve(<span class="string">'./app.js'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>后来找到问题出自<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">resolve</span>: &#123;</div><div class="line">  <span class="attribute">extensions</span>: [<span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>]</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>原因是修改了默认的这个配置后，第一个空项不能省略，应该配置为<br><figure class="highlight plain"><figcaption><span>&#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">  extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.vue&apos;, &apos;.json&apos;]</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>错误信息 <figure class="highlight plain"><figcaption><span>resolve module 'sass-loader'```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">##### 解决：</div><div class="line">缺少node-sass 或 sass-loader</div><div class="line">```npm install node-sass sass-loader --save-dev</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>把sass-loader安装成了”scss-loader”: “0.0.1”,也是服了我自己。</p>
+<blockquote>
+<p>接口地址只能获取本地数据，配置test环境失败</p>
+<h5 id="解决：-2"><a href="#解决：-2" class="headerlink" title="解决："></a>解决：</h5><p>server.js中加一层代理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>)</div><div class="line"></div><div class="line"><span class="comment">// api代理</span></div><div class="line"><span class="keyword">var</span> proxyTable = config.test.proxyTable</div><div class="line"><span class="built_in">Object</span>.keys(proxyTable).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> options = proxyTable[context]</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> options === <span class="string">'string'</span>) &#123;</div><div class="line">    options = &#123; <span class="attr">target</span>: options &#125;</div><div class="line">  &#125;</div><div class="line">  server.use(proxyMiddleware(context, options))</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// proxyTable数据</span></div><div class="line">proxyTable: &#123;</div><div class="line">  <span class="string">'/api'</span>: &#123;</div><div class="line">    <span class="comment">// 测试服务器</span></div><div class="line">    target: <span class="string">'http://ip地址:端口号/xx'</span>,</div><div class="line">    changeOrigin: <span class="literal">true</span>,</div><div class="line">    pathRewrite: &#123;</div><div class="line">      <span class="string">'^/api'</span>: <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>weex接口调用，fetch的headers某些字段始终设置不上</p>
+<h5 id="解决：-3"><a href="#解决：-3" class="headerlink" title="解决："></a>解决：</h5><p>fetch的headers只能设置下面这些字段<br>参考： <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS</a></p>
+<hr>
+<p>  ● 人为设置了对CORS安全的首部字段集合之外的其他首部字段。该集合为：<br>    ○ Accept<br>    ○ Accept-Language<br>    ○ Content-Language<br>    ○ Content-Type (but note the additional requirements below)<br>    ○ DPR<br>    ○ Downlink<br>    ○ Save-Data<br>    ○ Viewport-Width<br>    ○ Width<br>  ●  Content-Type 的值不属于下列之一:<br>    ○ application/x-www-form-urlencoded<br>    ○ multipart/form-data<br>    ○ text/plain</p>
+<hr>
+<p>stream的fetch使用get方式请求接口，url都会自动加上&amp;undefined，官网的例子也不例外。原本普通接口多加一个undefined也没太大影响，但是我们项目是需要根据url参数计算签名的，所以一直签名不通过。</p>
+</blockquote>
+<p><img src="https://segmentfault.com/img/bVPAyC" alt="clipboard.png"></p>
+<h5 id="解决：-4"><a href="#解决：-4" class="headerlink" title="解决："></a>解决：</h5><p>找到源码出处<br><img src="https://segmentfault.com/img/bVPz7b" alt="clipboard.png"><br><img src="https://segmentfault.com/img/bVPz6u" alt="clipboard.png"><br><img src="https://segmentfault.com/img/bVPABE" alt="clipboard.png"></p>
+<p>weex-vue-render第2753行对get进行了特别处理，第2764行的url拼接了body和hash，因为body没有传值，所以是undefined，注释掉url+=这行就没有undefined了，但是修改node_modules中的包内容显然不是一个合理的解决方案。<br>于是把get方式传值改为body传过来，web端好了，签名没有问题，但是真机上还是报错，排查后发现问题出在get中使用了body传值，找到开发文档，<br><a href="http://weex.apache.org/cn/references/modules/stream.html" target="_blank" rel="external">http://weex.apache.org/cn/references/modules/stream.html</a><br><img src="https://segmentfault.com/img/bVPABf" alt="clipboard.png"><br>然后我凌乱了，为什么明明不能传body你的源码里又要有那么一行代码<figure class="highlight plain"><figcaption><span>+= (config.url.indexOf('?') <= -1="" ?="" '?'="" :="" '&')="" +="" body="" hash;```。没办法，最后使用了一个超级笨的办法解决了。在签名计算的时候人为的给url加上“&undefined",计算好签名后，web中fetch参数中的url也要加上“&undefined"，但是真机上是不会有&undefined的，所以真机上的url需要去掉undefined，好了问题解决了。<="" span=""></=></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; storage中的```getItem(key, callback)```封装后，页面没拿到数据。</div><div class="line">##### 解决：</div><div class="line">storage异步造成的，使用promise解决</div></pre></td></tr></table></figure></p>
+<p>const p1 = new Promise(function (resolve) {<br>    storage.getItem(key, event =&gt; {<br>      let ls = event.data || ‘’<br>      let d = secret.decrypt(ls) // 对密文字符串进行解密。<br>      d = typeof d === ‘object’ ? JSON.parse(d) : d<br>      resolve(d)<br>    })<br>  })<br>  Promise.all([p1]).then(function (result) {<br>    callback(result)<br>  }).catch(function(err){<br>    console.log(‘error’, err)<br>  })<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> 页面跳转外部非js链接，在网页上是好的，但真机上一片空白</span></div></pre></td></tr></table></figure></p>
+<p>navigator.push({<br>  url: ‘<a href="https://segmentfault.com/write?freshman=1" target="_blank" rel="external">https://segmentfault.com/write?freshman=1</a>‘,<br>  animated: “true”<br>})<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">##### 解决：</div><div class="line">新建一个vue文件，使用weex的web标签包一层，然后打包成weex.js格式，普通调用就好了。</div><div class="line">```&lt;web <span class="keyword">class</span>=<span class="string">"content"</span> :src=<span class="string">"url"</span>&gt;&lt;/web&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>跳转weex.js页面传参</p>
+<h5 id="解决：-5"><a href="#解决：-5" class="headerlink" title="解决："></a>解决：</h5><p>直接在url后面拼接参数，新页面使用this.$getConfig().bundleUrl获取url解析一下就好了。<br>post提交数据的是后报错415</p>
+<h5 id="解决：-6"><a href="#解决：-6" class="headerlink" title="解决："></a>解决：</h5><p>头部信息一定要和后端协议好，不允许不一致。</p>
+</blockquote>
+<h5 id="转自-我的weex开发之路"><a href="#转自-我的weex开发之路" class="headerlink" title="[转自] 我的weex开发之路"></a>[转自] <a href="https://segmentfault.com/a/1190000009873690" target="_blank" rel="external">我的weex开发之路</a></h5>
           
         
       
@@ -415,7 +465,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -461,8 +511,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -475,7 +525,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -525,7 +575,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

@@ -206,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -216,7 +216,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            Kategorien
           </a>
         </li>
       
@@ -226,7 +226,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -236,7 +236,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/stardew/vue-drag-and-drop/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/stardew/vueresource-405/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lu.wei">
@@ -302,7 +302,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue-drag-and-drop/" itemprop="url">vue-drag-and-drop</a></h2>
+                <a class="post-title-link" href="/vueresource-405/" itemprop="url">vueresource-405</a></h2>
         
 
         <div class="post-meta">
@@ -312,10 +312,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-21T11:59:00Z">
-                2016-09-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-25T00:00:00Z">
+                2017-07-25
               </time>
             
 
@@ -333,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/vue-drag-and-drop/#comments" itemprop="discussionUrl">
+                <a href="/vueresource-405/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="vue-drag-and-drop/" itemprop="commentCount"></span>
+                        data-disqus-identifier="vueresource-405/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,34 +365,36 @@
       
         
           
-            <h2 id="输入内容转图片（vue-html2canvas-vue-drag-and-drop）"><a href="#输入内容转图片（vue-html2canvas-vue-drag-and-drop）" class="headerlink" title="输入内容转图片（vue + html2canvas + vue-drag-and-drop）"></a>输入内容转图片（vue + html2canvas + vue-drag-and-drop）</h2><p>最近做了一个小工具，把输入的内容转成图片输出。使用插件 html2canvas，vue-drag-and-drop  </p>
-<p>功能：输入列表框可上下移动、拖拽、添加、删除，生成图片可预览、下载。  </p>
-<p>基本思路：把html转成canvas，然后把canvas存成图片。  </p>
-<p>完成：用插件vue-drag-and-drop，使输入列表可拖拽；刚开始自己根据输入的内容用canvas画图，但是考虑到可扩展性，最后选择html2canvas工具把html转成canvas。  </p>
-<p>遇到的问题及解决办法：  </p>
-<p>1. 开始自己根据输入所得数据用canvas一行一行画，文字断行处右边对不齐。  </p>
-<p>问题成因：因为输入的文字有中文英文等，占位不同，固定每行截取字符的长度导致右端不对齐。  </p>
-<p>解决：所有文字都转为英文字符数，中文占两字符，其它占一个字符，计算出行数；每行英文字符占位是固定的x，然后从开始位置往后计算x长度时，正常文字所在位置，substr截取出来，canvas画上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取段落真实长度,包括中英文</span></div><div class="line">getTrueLength: <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> len = str.length</div><div class="line">  <span class="keyword">let</span> truelen = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; len; x++) &#123;</div><div class="line">    <span class="keyword">if</span> (str.charCodeAt(x) &gt; <span class="number">128</span>) &#123;</div><div class="line">      truelen += <span class="number">2</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      truelen += <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> truelen</div><div class="line">&#125;,</div><div class="line"><span class="comment">// canvas画图时,文字切割</span></div><div class="line">cutString: <span class="function"><span class="keyword">function</span> (<span class="params">str, leng</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> len = str.length</div><div class="line">  <span class="keyword">let</span> tlen = len</div><div class="line">  <span class="keyword">let</span> nlen = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; len; x++) &#123;</div><div class="line">    <span class="keyword">if</span> (str.charCodeAt(x) &gt; <span class="number">128</span>) &#123;</div><div class="line">      <span class="keyword">if</span> (nlen + <span class="number">2</span> &lt; leng) &#123;</div><div class="line">        nlen += <span class="number">2</span></div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        tlen = x</div><div class="line">        <span class="keyword">break</span></div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">if</span> (nlen + <span class="number">1</span> &lt; leng) &#123;</div><div class="line">        nlen += <span class="number">1</span></div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        tlen = x</div><div class="line">        <span class="keyword">break</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> tlen</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>2. textarea里输入的换行、空格直接存到所需样式的div里时，没效果。  </p>
-<p>问题成因：编码格式不统一，textarea内容存到textarea里格式是一致的。  </p>
-<p>解决：转义一下，空格替换成&nbsp;换行\r\n换为<code>&lt;br&gt;</code>，template里使用&#123;&#123;&#123;&#125;&#125;&#125;而非&#123;&#123;&#125;&#125;解析。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">nl2br: <span class="function"><span class="keyword">function</span> (<span class="params">str, idx, tag, isXhtml</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> blankTag = <span class="string">'&amp;nbsp;'</span></div><div class="line">  <span class="keyword">let</span> breakTag = (isXhtml || <span class="keyword">typeof</span> isXhtml === <span class="string">'undefined'</span>) ? <span class="string">'&lt;br /&gt;'</span> : <span class="string">'&lt;br&gt;'</span></div><div class="line">  <span class="keyword">let</span> newStr = (str + <span class="string">''</span>).replace(<span class="regexp">/([^&gt;\s]?)(\s)/g</span>, <span class="string">'$1'</span> + blankTag + <span class="string">'$2'</span>)</div><div class="line">  newStr = (newStr + <span class="string">''</span>).replace(<span class="regexp">/([^&gt;\r\n]?)(\r\n|\n\r|\r|\n)/g</span>, <span class="string">'$1'</span> + breakTag + <span class="string">'$2'</span>)</div><div class="line">  <span class="keyword">if</span> (tag) &#123;</div><div class="line">    <span class="keyword">this</span>.changeData[idx][tag] = newStr</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> newStr</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p>3. 画成的canvas，存成图片模糊。</p>
-<p>问题成因：屏幕显示和屏幕像素一样大小的图片时，尺寸相符，一个屏幕像素对应一个图像像素，显示清晰，但是一个比屏幕像素小的图片展示时，屏幕像素比图片像素多，一个图片像素要用一个多屏幕像素来显示，此时，图像显示驱动的平滑处理功能生效，显示驱动用插值算法在源图中扩展生成新的像素点，图片被拉伸，所以模糊了。  </p>
-<p>解决：知道了问题的成因就好办了，可是把canvas画大一点，图片比屏幕大了就不会模糊了，简单的解决办法是使用双倍canvas高宽，画成图，toDataUrl转成.jpg图片，然后图片展示时缩放一倍。 = &gt; canvas width 1960，img width: 980  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 文本信息保存成图片</span></div><div class="line">saveImageInfo: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> mycanvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>)</div><div class="line">  <span class="keyword">let</span> image = mycanvas.toDataURL(<span class="string">'image/png'</span>)</div><div class="line">  <span class="keyword">let</span> w = <span class="built_in">window</span>.open(<span class="string">'about:blank'</span>, <span class="string">'image from canvas'</span>)</div><div class="line">  w.document.write(<span class="string">'&lt;img src="'</span> + image + <span class="string">'" alt="from canvas" style="width: 980px; margin: 0 auto; display: block; height: '</span> + (<span class="keyword">this</span>.canvasHeight / <span class="number">2</span>) + <span class="string">'px"/&gt;'</span>)</div><div class="line">&#125;,</div><div class="line"><span class="comment">// 存为本地图片</span></div><div class="line">saveAsLocalImage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> myCanvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>)</div><div class="line">  <span class="keyword">let</span> image = myCanvas.toDataURL(<span class="string">'image/png'</span>).replace(<span class="string">'image/png'</span>, <span class="string">'image/octet-stream'</span>)</div><div class="line">  <span class="built_in">window</span>.location.href = image</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<ol>
-<li>html2canvas把html页面存成图片时，图片不全。</li>
-</ol>
-<p>问题成因：html2canvas只能把当前浏览器窗口内及以下部分的内容转成图片，任何已经滚动到浏览器顶部以上以及position、fixed后的非可视的内容都无法存图  </p>
-<p>解决办法：先记录当前scrollTop值，window.scrollTo(0,0)到顶部，然后画图，就可以解决了，完了再回到原来的scroll位置。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 文本信息画成canvas</span></div><div class="line">draw: <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> y = <span class="built_in">document</span>.body.scrollTop || <span class="built_in">document</span>.documentElement.scrollTop || <span class="number">0</span></div><div class="line">  <span class="built_in">window</span>.scrollTo(<span class="number">0</span>, <span class="number">0</span>)</div><div class="line">  <span class="built_in">window</span>.html2canvas(<span class="built_in">document</span>.querySelector(<span class="string">'#drawImg'</span>), &#123;<span class="attr">allowTaint</span>: <span class="literal">false</span>, <span class="attr">taintTest</span>: <span class="literal">false</span>&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">canvas</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.ob.innerHTML = <span class="string">''</span></div><div class="line">    <span class="keyword">this</span>.ob.appendChild(canvas)</div><div class="line">    <span class="built_in">window</span>.scrollTo(<span class="number">0</span>, y)</div><div class="line">    callback &amp;&amp; callback()</div><div class="line">  &#125;.bind(<span class="keyword">this</span>))</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<ol>
-<li>html2canvas画出来的图片也模糊。</li>
-</ol>
-<p>问题成因：如3  </p>
-<p>解决：因为插件里的内容别的地方可能也要用，所以不修改canvas画布大小的算法。画布的大小是所要画的html内容决定的，所以只要这个html整体放大一倍，图片再缩小一倍就可以解决了。  </p>
-<h5 id="转自-输入内容转图片（vue-html2canvas-vue-drag-and-drop）"><a href="#转自-输入内容转图片（vue-html2canvas-vue-drag-and-drop）" class="headerlink" title="[转自] 输入内容转图片（vue + html2canvas + vue-drag-and-drop）"></a>[转自] <a href="https://my.oschina.net/luweiweiwei/blog/749569" target="_blank" rel="external">输入内容转图片（vue + html2canvas + vue-drag-and-drop）</a></h5>
+            <p>vue-resource(github)地址：<a href="https://github.com/pagekit/vue-resource">https://github.com/pagekit/vue-resource</a></p>
+<h2 id="一、基本使用"><a href="#一、基本使用" class="headerlink" title="一、基本使用"></a>一、基本使用</h2><h5 id="1-页面引入"><a href="#1-页面引入" class="headerlink" title="1.页面引入"></a>1.页面引入</h5><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> vueResource <span class="keyword">from</span> <span class="string">'vue-resource'</span></div><div class="line">Vue.use(vueResource)</div></pre></td></tr></table></figure>
+<h5 id="2-调取接口"><a href="#2-调取接口" class="headerlink" title="2. 调取接口"></a>2. 调取接口</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Vue.http.post(url, &#123;</div><div class="line">  <span class="string">'data1'</span>: data1,</div><div class="line">  <span class="string">'data2'</span>: <span class="string">'data2'</span></div><div class="line">&#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success'</span>, response)</div><div class="line">&#125;, <span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'error'</span>, response)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="二、报错450"><a href="#二、报错450" class="headerlink" title="二、报错450"></a>二、报错450</h2><p>定位错误信息：请求header没有完全一一对应。<figure class="highlight plain"><figcaption><span>application/x-www-form-urlencoded; charset=UTF-8```应为```Content-Type: application/json; charset=UTF-8```，检查页面代码，发现已经设置了</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">Vue.http.interceptors.push(function (request, next) &#123;</div><div class="line">  request.headers.set(&apos;Content-Type&apos;, &apos;application/json; charset=UTF-8&apos;)</div><div class="line">  request.headers.set(&apos;Content-Type&apos;, &apos;application/json&apos;)</div><div class="line">  next()</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>只是页面没有起作用而已，那究竟是什么原因导致页面设置的Content-Type失效了呢？继续追溯，发现跟这行代码有关<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Vue.http.options.crossOrigin = true </span></div><div class="line"><span class="comment">// Vue.http.options.emulateHTTP = true</span></div><div class="line">Vue<span class="selector-class">.http</span><span class="selector-class">.options</span><span class="selector-class">.emulateJSON</span> = true <span class="comment">//（跟这行代码有关）</span></div></pre></td></tr></table></figure></p>
+<h2 id="三、分析"><a href="#三、分析" class="headerlink" title="三、分析"></a>三、分析</h2><p>下面分别来讲一下这几行代码的用处，以及emulateJSON是怎么影响到Content-Type设置的。</p>
+<h5 id="1-Vue-http-options-crossOrigin"><a href="#1-Vue-http-options-crossOrigin" class="headerlink" title="1. Vue.http.options.crossOrigin"></a>1. Vue.http.options.crossOrigin</h5><p>这个很明显是设置跨域的，此处不多讲。</p>
+<h5 id="2-Vue-http-options-emulateHTTP"><a href="#2-Vue-http-options-emulateHTTP" class="headerlink" title="2. Vue.http.options.emulateHTTP"></a>2. Vue.http.options.emulateHTTP</h5><p>参考地址：<a href="https://github.com/pagekit/vue-resource/blob/develop/src/http/interceptor/method.js">https://github.com/pagekit/vue-resource/blob/develop/src/http/interceptor/method.js</a><br>摘出源码<br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * HTTP method override Interceptor.</div><div class="line"> */</div><div class="line"></div><div class="line">export <span class="keyword">default</span> <span class="keyword">function</span> (<span class="built_in">request</span>, <span class="keyword">next</span>) &#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">request</span>.emulateHTTP &amp;&amp; /^(PUT|PATCH|DELETE)$/i.test(<span class="built_in">request</span>.method)) &#123;</div><div class="line">        <span class="built_in">request</span>.headers.<span class="keyword">set</span>(<span class="comment">'X-HTTP-Method-Override', request.method);</span></div><div class="line">        <span class="built_in">request</span>.method = <span class="comment">'POST';</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">next</span>();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>大概的意思就是如果请求方式为PUT|PATCH|DELETE，服务器又没法处理这几类请求的时候，设置<figure class="highlight plain"><figcaption><span>= true```的话可以将X-HTTP-Method-Override设置为PUT|PATCH|DELETE，然后使用普通的post进行请求。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">关于X-HTTP-Method-Override讲一下，它的使用场景是：</div><div class="line">在某些HTTP代理不支持类似PUT|PATCH|DELETE这些类型HTTP请求的情况下，可以通过另一种完全违背协议的HTTP方法来&quot;代理&quot;。这种协议就是，使客户端发出HTTP POST请求并设置header里X-HTTP-Method-Override值为PUT|PATCH|DELETE。</div><div class="line">##### 3. Vue.http.options.emulateJSON</div><div class="line"></div><div class="line">参考地址：https://github.com/pagekit/vue-resource/blob/develop/src/http/interceptor/form.js</div><div class="line">摘出源码</div></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li>Form data Interceptor.<br>*/</li>
+</ul>
+<p>import Url from ‘../../url/index’;<br>import { isObject, isFormData } from ‘../../util’;</p>
+<p>export default function (request, next) {</p>
+<pre><code>if (isFormData(request.body)) {
+
+    request.headers.delete(&apos;Content-Type&apos;);
+
+} else if (isObject(request.body) &amp;&amp; request.emulateJSON) {
+
+    request.body = Url.params(request.body);
+    request.headers.set(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;);
+}
+
+next();
+</code></pre><p>}</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">从第<span class="number">17</span>行可以看到，如果设置了emulateJSON的话会默认加上这句</div></pre></td></tr></table></figure>
+<p>request.headers.set(‘Content-Type’, ‘application/x-www-form-urlencoded’);<br>```<br>这就是为什么我们设置的Content-Type失效了。只要去掉Vue.http.options.emulateHTTP = true 或者直接置为false就可以了。</p>
+<h5 id="转自-vue-resource报错450的解决方案"><a href="#转自-vue-resource报错450的解决方案" class="headerlink" title="[转自] vue-resource报错450的解决方案"></a>[转自] <a href="https://segmentfault.com/a/1190000010321126" target="_blank" rel="external">vue-resource报错450的解决方案</a></h5>
           
         
       
@@ -431,7 +433,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -477,8 +479,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -491,7 +493,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -541,7 +543,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

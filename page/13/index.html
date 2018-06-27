@@ -206,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -216,7 +216,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            Kategorien
           </a>
         </li>
       
@@ -226,7 +226,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -236,7 +236,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/stardew/mouse-move-trouble/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/stardew/autojump/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lu.wei">
@@ -302,7 +302,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/mouse-move-trouble/" itemprop="url">mouse-move-trouble</a></h2>
+                <a class="post-title-link" href="/autojump/" itemprop="url">autojump</a></h2>
         
 
         <div class="post-meta">
@@ -312,10 +312,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-29T13:03:00Z">
-                2015-07-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-12T18:52:00Z">
+                2016-12-12
               </time>
             
 
@@ -333,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/mouse-move-trouble/#comments" itemprop="discussionUrl">
+                <a href="/autojump/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="mouse-move-trouble/" itemprop="commentCount"></span>
+                        data-disqus-identifier="autojump/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,20 +365,23 @@
       
         
           
-            <h2 id="mouseover、mouseout防止多次触发"><a href="#mouseover、mouseout防止多次触发" class="headerlink" title="mouseover、mouseout防止多次触发"></a>mouseover、mouseout防止多次触发</h2><p>今天做一个信息提示功能时，发现用mouseover展示提示信息，mouseout收起信息时，一直闪烁，开始以为层级关系出问题，修改许久未见成效，最后发现是因为内部元素在鼠标移上的时候会向它的父对…  </p>
-<p><img src="http://static.oschina.net/uploads/space/2015/0729/125346_K5Kp_255575.png" alt=""><img src="http://static.oschina.net/uploads/space/2015/0729/124752_Lwdz_255575.png" alt=""></p>
-<pre><code>下面这段文字是摘抄的：  
-
-    在用到mouseover和mouseout事件来作为事件触发的条件，但是如果我们用做触发的元素内部有其他的元素的时候当鼠标移上的时候会反复的触发mouseover和mouseout事件。因为内部元素在鼠标移上的时候会向它的父对象派发事件，所以外面元素相当于也触发了mouseover 事件。
-
-    为了阻止mouseover和mouseout的反复触发，这里要用到event对象的一个属性relatedTarget，这个属性就是用来判断 mouseover和mouseout事件目标节点的相关节点的属性。简单的来说就是当触发mouseover事件时，relatedTarget属性代表的就是鼠标刚刚离开的那个节点，当触发mouseout事件时它代表的是鼠标移向的那个对象。由于MSIE不支持这个属性，不过它有代替的属性，分别是 fromElement和toElement。
-
-有了这个属性，我们就能够清楚的知道我们的鼠标是从哪个对象移过来，又是要移动到哪里去了。这样我们就能够通过判断这个相关联的对象是否在我们要触发事件的对象的内部，或者是不是就是这个对象本身。通过这个判断我们就能够合理的选择是否真的要触发事件。
-
-这里我们还用到了一个用于检查一个对象是否包含在另外一个对象中的方法，contains方法。MSIE和FireFox分别提供了检查的方法，这里封装了一个函数。
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*鼠标移入移出事件 防止多次触发*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">contains</span>(<span class="params">parentNode, childNode</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (parentNode.contains) &#123;</div><div class="line">        <span class="keyword">return</span> parentNode != childNode &amp;&amp; parentNode.contains(childNode);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> !!(parentNode.compareDocumentPosition(childNode) &amp; <span class="number">16</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkHover</span>(<span class="params">e,target</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (getEvent(e).type==<span class="string">"mouseover"</span>)  &#123;</div><div class="line">        <span class="keyword">return</span> !contains(target,getEvent(e).relatedTarget||getEvent(e).fromElement) &amp;&amp; !((getEvent(e).relatedTarget||getEvent(e).fromElement)===target);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> !contains(target,getEvent(e).relatedTarget||getEvent(e).toElement) &amp;&amp; !((getEvent(e).relatedTarget||getEvent(e).toElement)===target);</div><div class="line">    &#125;</div><div class="line">&#125;<span class="function"><span class="keyword">function</span> <span class="title">getEvent</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> e||<span class="built_in">window</span>.event;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*鼠标移入移出事件 防止多次触发*/</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).on(<span class="string">"mouseover"</span>,<span class="string">".messages"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(checkHover(e,<span class="keyword">this</span>)) &#123;</div><div class="line">        $(<span class="keyword">this</span>).addClass(<span class="string">"on"</span>);</div><div class="line">        $(<span class="keyword">this</span>).find(<span class="string">".m-txt"</span>).animate(&#123;<span class="attr">right</span>: <span class="string">"60px"</span>&#125;, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;).on(<span class="string">"mouseout"</span>,<span class="string">".messages"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(checkHover(e,<span class="keyword">this</span>)) &#123;</div><div class="line">        $(<span class="keyword">this</span>).removeClass(<span class="string">"on"</span>);</div><div class="line">        $(<span class="keyword">this</span>).find(<span class="string">".m-txt"</span>).animate(&#123;<span class="attr">right</span>: <span class="string">"-200px"</span>&#125;, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="转自-mouseover、mouseout防止多次触发"><a href="#转自-mouseover、mouseout防止多次触发" class="headerlink" title="[转自] mouseover、mouseout防止多次触发"></a>[转自] <a href="https://my.oschina.net/luweiweiwei/blog/485108" target="_blank" rel="external">mouseover、mouseout防止多次触发</a></h5>
+            <h2 id="mac安装autojump"><a href="#mac安装autojump" class="headerlink" title="mac安装autojump"></a>mac安装autojump</h2><pre><code>autojump是一个命令行工具，它可以使用快捷命令，直接跳转到配置好的目录，而不用管现在身在何处。  
+</code></pre><ol>
+<li>安装zsh：<br> <code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code></li>
+<li>将zsh设置成默认的shell：<code>chsh -s /bin/zsh</code> (重启shell)</li>
+<li><code>echo $SHELL</code>可以查看用的哪个shell（bash or zsh）</li>
+<li>安装autojump：<code>brew install autojump</code>（确保有brew）</li>
+<li>使用<code>vim .zshrc</code>打开.zshrc（有些人会找不到.zshrc这个文件，其实安装了zsh才会有.zshrc ，在默认打开的终端目录下。可以打开终端并且ls -a查看）。<ul>
+<li>找到 plugins=，在后面添加autojump：<code>plugins=(git autojump)</code></li>
+<li>新开一行，添加：<code>[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] &amp;&amp; . $(brew --prefix)/etc/profile.d/autojump.sh</code></li>
+<li><code>：wq</code>保存退出</li>
+</ul>
+</li>
+<li><p>重启终端，autojump就可以使用了，例如：<br>   添加一条快捷键：<code>j -a s &#39;/Users/XXX/Desktop/code/shark’</code>（j -a 你定义的快捷命令 ‘需要跳转的目录位置’）</p>
+<p>   进入shark：<code>j s</code></p>
+</li>
+</ol>
+<h5 id="转自-mac安装autojump"><a href="#转自-mac安装autojump" class="headerlink" title="[转自] mac安装autojump"></a>[转自] <a href="https://my.oschina.net/luweiweiwei/blog/804679" target="_blank" rel="external">mac安装autojump</a></h5>
           
         
       
@@ -417,7 +420,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -463,8 +466,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -477,7 +480,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -527,7 +530,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
