@@ -57,9 +57,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/stardew"></form>
@@ -70,505 +70,27 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-regexp-basic" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/regexp-basic/" class="article-date">
-  <time datetime="2016-01-08T15:49:00.000Z" itemprop="datePublished">2016-01-08</time>
+    <a href="/1/" class="article-date">
+  <time datetime="2018-06-27T05:46:37.000Z" itemprop="datePublished">2018-06-27</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/regexp-basic/">regexp-basic</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="我对正则表达式的一点理解"><a href="#我对正则表达式的一点理解" class="headerlink" title="我对正则表达式的一点理解"></a>我对正则表达式的一点理解</h2><p>前几日拜读jquery源码，发现里边有大量的正则表达式，看着着实头疼，今天特地研究了一下，自己稍微沉淀了一点东西。  </p>
-<ol>
-<li><p>何为正则表达式？</p>
-<p>通常情况下，我们所看到的正则表达式就是一串难懂的字符串（如：[\w!#$%&amp;’<em>+/=?^_`{|}~-]+(?:\.[\w!#$%&amp;’</em>+/=?^_`{|}~-]+)<em>@(?:[\w](?:[\w-]</em>[\w])?\.)+[\w](?:[\w-]*[\w])?），没错，正则表达式就是符合某一类规则的一串表达式。</p>
-</li>
-<li><p>什么情况下会用到正则表达式？</p>
-<p>通常我们会在字符串的查找匹配，替换中使用到正则。</p>
-</li>
-<li><p>如何使用正则表达式？</p>
-<p>前面也说过，正则表达式需要符合一定的规则，也就是说，按规则来书写，就基本可以满足需求，当然，只是满足基本，在实际应用中还应该考虑各种情况，这就需要添加更多的限定条件。我们先拿前面提到的正则式来举个例子。</p>
-<p>[\w!#$%&amp;’<em>+/=?^_`{|}~-]+(?:\.[\w!#$%&amp;’</em>+/=?^_`{|}~-]+)<em>@(?:[\w](?:[\w-]</em>[\w])?\.)+[\w](?:[\w-]*[\w])?</p>
-<p>看着这么一大串乱七八糟的字符有没有很头疼呢，我们且不说这是干什么用的，先根据附录中的规则分解剖析一番，把这个表达式分几部分</p>
-</li>
-</ol>
-<ol>
-<li><p>[\w!#$%&amp;’*+/=?^_`{|}~-]+ </p>
-<p>中括号[]里面是我们要匹配的字符，后面的+是重复至少一次的意思，\w是指此字符串以下划线、数字或字母打头，或者以!#$%&amp;’<em>+/=?^_`{|}~-中的任何一个打头，!#$%&amp;’</em>+/=?^_`{|}~-这么一大串其实就是我们键盘顶部那些字符。</p>
-</li>
-<li><p>(?:\.[\w!#$%&amp;’<em>+/=?^_`{|}~-]+)</em> </p>
-<p>这一串紧跟着首字符之后，小括号()里面是一个子表达式，用来分组的，(?:\.)见附录表4中的捕获，.是匹配除换行符以外的任意字符，而\.是转义之后的，单纯指.，.后必须跟字符或字符串。最后面的<em>指重复0次或更多次的意思，小括号里面还a中出现的[\w!#$%&amp;’</em>+/=?^_`{|}~-]+。</p>
-</li>
-<li><p>@</p>
-<p>这个就是匹配单纯的@符号，必须出现的。</p>
-</li>
-<li><p>(?:[\w](?:[\w-]*[\w])?\.)+ </p>
-<p>字符或字符串以.结束，内部还嵌套了一个子表达式(?:[\w-]*[\w])?，不难理解。</p>
-</li>
-<li><p>[\w](?:[\w-]*[\w])? </p>
-<p>d内部嵌套的子表达式一样。</p>
-</li>
-</ol>
-<p>看完上面的解释，你一定也看出这个正则表达式的功能了吧，不错，正是用来匹配邮箱的。当然，上面匹配的比较严格，我们也可以简单的使用[\w+~!#$%^&amp;*()_+]+@\w+.\w+进行匹配，依项目需要了。看到这里，有没有觉得其实正则表达式并没有想象中那么可怕呢。下面我们来写一个简单的匹配电话号码的正则式（如：010-11111111,0101111111等）：</p>
-<p>^[0]\d{2}-?\d{8}|\[0]d{3}-?\d{7,8}$</p>
-<p>写完之后，可以在线（<a href="http://tool.oschina.net/regex/" target="_blank" rel="external">http://tool.oschina.net/regex/</a>）测试一下我们所写的正则式是否符合要求，</p>
-<h4 id="4-附录："><a href="#4-附录：" class="headerlink" title="4. 附录："></a>4. 附录：</h4><p>表1. 常用元字符</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td>匹配除换行符以外的任意字符</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配字母或数字或下划线</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任意的空白符</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配数字</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串的开始</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结束</td>
-</tr>
-</tbody>
-</table>
-<p>表2.常用的限定符</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td>重复零次或更多次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>重复一次或更多次</td>
-</tr>
-<tr>
-<td>?</td>
-<td>重复零次或一次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>重复n次</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>重复n次或更多次</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>重复n到m次</td>
-</tr>
-</tbody>
-</table>
-<p>表3.常用的反义代码</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\W</td>
-<td>匹配任意不是字母，数字，下划线的字符</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td>[^x]</td>
-<td>匹配除了x以外的任意字符</td>
-</tr>
-<tr>
-<td>[^aeiou]</td>
-<td>匹配除了aeiou这几个字母以外的任意字符</td>
-</tr>
-</tbody>
-</table>
-<p>表4.常用分组语法</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>捕获：(exp)</td>
-<td>匹配exp,并捕获文本到自动命名的组里</td>
-</tr>
-<tr>
-<td>捕获：(?<name>exp)</name></td>
-<td>匹配exp,并捕获文本到名称为name的组里，也可以写成(?’name’exp)</td>
-</tr>
-<tr>
-<td>捕获：(?:exp)</td>
-<td>匹配exp,不捕获匹配的文本，也不给此分组分配组号</td>
-</tr>
-<tr>
-<td>零宽断言：(?=exp)</td>
-<td>匹配exp前面的位置</td>
-</tr>
-<tr>
-<td>零宽断言：(?&lt;=exp)</td>
-<td>匹配exp后面的位置</td>
-</tr>
-<tr>
-<td>零宽断言：(?!exp)</td>
-<td>匹配后面跟的不是exp的位置</td>
-</tr>
-<tr>
-<td>零宽断言：(?&lt;!exp)</td>
-<td>匹配前面不是exp的位置</td>
-</tr>
-<tr>
-<td>注释：(?#comment)</td>
-<td>这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读</td>
-</tr>
-</tbody>
-</table>
-<p>表5.懒惰限定符</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*?</td>
-<td>重复任意次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>+?</td>
-<td>重复1次或更多次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>??</td>
-<td>重复0次或1次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>{n,m}?</td>
-<td>重复n到m次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>{n,}?</td>
-<td>重复n次以上，但尽可能少重复</td>
-</tr>
-</tbody>
-</table>
-<p>表6.常用的处理选项</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IgnoreCase(忽略大小写)</td>
-<td>匹配时不区分大小写。</td>
-</tr>
-<tr>
-<td>Multiline(多行模式)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>更改^和$的含义，使它们分别在任意一行的行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配。(在此模式下,$的精确含意是:匹配\n之前的位置以及字符串结束前的位置.)<br>Singleline(单行模式) | 更改.的含义，使它与每一个字符匹配（包括换行符\n）。<br>IgnorePatternWhitespace(忽略空白) | 忽略表达式中的非转义空白并启用由#标记的注释。<br>ExplicitCapture(显式捕获) | 仅捕获已被显式命名的组。</p>
-<p>表7.尚未详细讨论的语法</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>\a | 报警字符(打印它的效果是电脑嘀一声)<br>\b | 通常是单词分界位置，但如果在字符类里使用代表退格<br>\t | 制表符，Tab<br>\r | 回车<br>\v | 竖向制表符<br>\f | 换页符<br>\n | 换行符<br>\e | Escape<br>\0nn | ASCII代码中八进制代码为nn的字符<br>\xnn | ASCII代码中十六进制代码为nn的字符<br>\unnnn | Unicode代码中十六进制代码为nnnn的字符<br>\cN | ASCII控制字符。比如\cC代表Ctrl+C<br>\A | 字符串开头(类似^，但不受处理多行选项的影响)<br>\Z | 字符串结尾或行尾(不受处理多行选项的影响)<br>\z | 字符串结尾(类似$，但不受处理多行选项的影响)<br>\G | 当前搜索的开头<br>\p{name} | Unicode中命名为name的字符类，例如\p{IsGreek}<br>(?&gt;exp) | 贪婪子表达式<br>(?<x>-<y>exp) | 平衡组<br>(?im-nsx:exp) | 在子表达式exp中改变处理选项<br>(?im-nsx) | 为表达式后面的部分改变处理选项<br>(?(exp)yes|no) | 把exp当作零宽正向先行断言，如果在这个位置能匹配，使用yes作为此组的表达式；否则使用no<br>(?(exp)yes) | 同上，只是使用空表达式作为no<br>(?(name)yes|no) | 如果命名为name的组捕获到了内容，使用yes作为表达式；否则使用no<br>(?(name)yes) | 同上，只是使用空表达式作为no</y></x></p>
-<h5 id="转自我对正则表达式的一点理解"><a href="#转自我对正则表达式的一点理解" class="headerlink" title="转自我对正则表达式的一点理解"></a>转自<a href="https://my.oschina.net/luweiweiwei/blog/599739" target="_blank" rel="external">我对正则表达式的一点理解</a></h5>
+        <p>## </p>
+<h5 id="转自"><a href="#转自" class="headerlink" title="转自"></a>转自<a href=""></a></h5>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/stardew/regexp-basic/" data-id="cjiwsjhet000ci2z654vnht8z" class="article-share-link">Share</a>
+      <a data-url="https://github.com/stardew/1/" data-id="cjiwslp400001lfz6cq7iq5t0" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/joy/">joy</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mouse-move-trouble" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/mouse-move-trouble/" class="article-date">
-  <time datetime="2015-07-29T13:03:00.000Z" itemprop="datePublished">2015-07-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/mouse-move-trouble/">mouse-move-trouble</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="mouseover、mouseout防止多次触发"><a href="#mouseover、mouseout防止多次触发" class="headerlink" title="mouseover、mouseout防止多次触发"></a>mouseover、mouseout防止多次触发</h2><p>今天做一个信息提示功能时，发现用mouseover展示提示信息，mouseout收起信息时，一直闪烁，开始以为层级关系出问题，修改许久未见成效，最后发现是因为内部元素在鼠标移上的时候会向它的父对…  </p>
-<p><img src="http://static.oschina.net/uploads/space/2015/0729/125346_K5Kp_255575.png" alt=""><img src="http://static.oschina.net/uploads/space/2015/0729/124752_Lwdz_255575.png" alt=""></p>
-<pre><code>下面这段文字是摘抄的：  
-
-    在用到mouseover和mouseout事件来作为事件触发的条件，但是如果我们用做触发的元素内部有其他的元素的时候当鼠标移上的时候会反复的触发mouseover和mouseout事件。因为内部元素在鼠标移上的时候会向它的父对象派发事件，所以外面元素相当于也触发了mouseover 事件。
-
-    为了阻止mouseover和mouseout的反复触发，这里要用到event对象的一个属性relatedTarget，这个属性就是用来判断 mouseover和mouseout事件目标节点的相关节点的属性。简单的来说就是当触发mouseover事件时，relatedTarget属性代表的就是鼠标刚刚离开的那个节点，当触发mouseout事件时它代表的是鼠标移向的那个对象。由于MSIE不支持这个属性，不过它有代替的属性，分别是 fromElement和toElement。
-
-有了这个属性，我们就能够清楚的知道我们的鼠标是从哪个对象移过来，又是要移动到哪里去了。这样我们就能够通过判断这个相关联的对象是否在我们要触发事件的对象的内部，或者是不是就是这个对象本身。通过这个判断我们就能够合理的选择是否真的要触发事件。
-
-这里我们还用到了一个用于检查一个对象是否包含在另外一个对象中的方法，contains方法。MSIE和FireFox分别提供了检查的方法，这里封装了一个函数。
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*鼠标移入移出事件 防止多次触发*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">contains</span>(<span class="params">parentNode, childNode</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (parentNode.contains) &#123;</div><div class="line">        <span class="keyword">return</span> parentNode != childNode &amp;&amp; parentNode.contains(childNode);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> !!(parentNode.compareDocumentPosition(childNode) &amp; <span class="number">16</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkHover</span>(<span class="params">e,target</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (getEvent(e).type==<span class="string">"mouseover"</span>)  &#123;</div><div class="line">        <span class="keyword">return</span> !contains(target,getEvent(e).relatedTarget||getEvent(e).fromElement) &amp;&amp; !((getEvent(e).relatedTarget||getEvent(e).fromElement)===target);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> !contains(target,getEvent(e).relatedTarget||getEvent(e).toElement) &amp;&amp; !((getEvent(e).relatedTarget||getEvent(e).toElement)===target);</div><div class="line">    &#125;</div><div class="line">&#125;<span class="function"><span class="keyword">function</span> <span class="title">getEvent</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> e||<span class="built_in">window</span>.event;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*鼠标移入移出事件 防止多次触发*/</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).on(<span class="string">"mouseover"</span>,<span class="string">".messages"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(checkHover(e,<span class="keyword">this</span>)) &#123;</div><div class="line">        $(<span class="keyword">this</span>).addClass(<span class="string">"on"</span>);</div><div class="line">        $(<span class="keyword">this</span>).find(<span class="string">".m-txt"</span>).animate(&#123;<span class="attr">right</span>: <span class="string">"60px"</span>&#125;, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;).on(<span class="string">"mouseout"</span>,<span class="string">".messages"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(checkHover(e,<span class="keyword">this</span>)) &#123;</div><div class="line">        $(<span class="keyword">this</span>).removeClass(<span class="string">"on"</span>);</div><div class="line">        $(<span class="keyword">this</span>).find(<span class="string">".m-txt"</span>).animate(&#123;<span class="attr">right</span>: <span class="string">"-200px"</span>&#125;, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="转自mouseover、mouseout防止多次触发"><a href="#转自mouseover、mouseout防止多次触发" class="headerlink" title="转自mouseover、mouseout防止多次触发"></a>转自<a href="https://my.oschina.net/luweiweiwei/blog/485108" target="_blank" rel="external">mouseover、mouseout防止多次触发</a></h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/stardew/mouse-move-trouble/" data-id="cjiwsjhey000ei2z6d6phrtc7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/others/">others</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-true-friend" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/true-friend/" class="article-date">
-  <time datetime="2015-03-19T10:37:00.000Z" itemprop="datePublished">2015-03-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/true-friend/">true-friend</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="真正的朋友"><a href="#真正的朋友" class="headerlink" title="真正的朋友"></a>真正的朋友</h2><p>真正的朋友，节日里不发短信，平时也无电话寒暄，一旦有事，拿起话筒，连一句“不好意思”的客套都不用，直奔主题。  </p>
-<ul>
-<li><p>一个普通朋友见了你点头微笑，一个真正朋友见了你没有问候；</p>
-</li>
-<li><p>一个普通朋友在你没有事的时候常来找你，一个真正朋友在你有事时就来找你；</p>
-</li>
-<li><p>一个普通朋友在喝酒时会说，你不喝完这杯就不是朋友，一个真正朋友在喝酒时会说，别喝太多了；</p>
-</li>
-<li><p>一个普通朋友找你借钱时总要找个借口，一个真正朋友找你借钱时总说要借多少；</p>
-</li>
-<li><p>一个普通朋友会带礼物来你家参加聚会，一个真正朋友从来不带东西上门，而是帮你一起做家务；</p>
-</li>
-<li><p>一个普通朋友从来不会看到你哭，一个真正朋友却有双肩让你湿尽；</p>
-</li>
-<li><p>一个普通朋友能陪你喝完一瓶烈酒，一个真正朋友能陪你长谈一个黑夜；</p>
-</li>
-<li><p>一个普通朋友几年不见就感到陌生，一个真正朋友十年不见却更感亲切；</p>
-</li>
-<li><p>一个普通朋友的电话写在电话簿上都记不住，一个真正朋友的电话没有写下来却总记得一清二楚；</p>
-</li>
-<li><p>一个普通朋友总爱对你说，怎么还没找到一个女朋友啊，一个真正朋友却会悄悄对你说，明天我带你去认识一个新朋友；</p>
-</li>
-<li><p>一个普通朋友来你家会很客气，一个真正朋友来你家自己打开冰箱拿饮料；</p>
-</li>
-<li><p>一个普通朋友见你做错了会装作没看见，一个真正朋友见你做错了会说，你不能这样做！</p>
-</li>
-<li><p>一个普通朋友听了你唱的歌会掌声说真好听，一个真正朋友听了你唱的歌会说拜托下次别在折磨人了！</p>
-</li>
-<li><p>一个普通朋友见了你叫你李科长，一个真正朋友见了你叫你老李；</p>
-</li>
-<li><p>一个普通朋友在春风得意时看不到你，一个真正朋友在你落魂失意时来看你；</p>
-</li>
-<li><p>一个普通朋友送烟给你抽，一个真正朋友却拿你烟去送人抽；</p>
-</li>
-<li><p>一个普通朋友常会对你说，有事尽管找我，一个真正朋友常会对你说，没事别来烦我；</p>
-</li>
-<li><p>一个普通朋友在你有事找他时却总说刚好没空，一个真正朋友在你有事时打电话来问你；</p>
-</li>
-<li><p>一个普通朋友能和你一起分享，一个真正朋友能和你分享痛苦；</p>
-</li>
-<li><p>一个普通朋友爱和你说他的成功往事，一个真正朋友爱和你说他的不如意和挫折失败；</p>
-</li>
-<li><p>一个普通朋友在和你吵架后就成了仇敌，一个真正朋友在和你吵架后依然是朋友；</p>
-</li>
-<li><p>一个普通朋友让你近墨者黑，一个真正朋友让你知道近墨者会黑。</p>
-</li>
-</ul>
-<h5 id="转自真正的朋友"><a href="#转自真正的朋友" class="headerlink" title="转自真正的朋友"></a>转自<a href="https://my.oschina.net/luweiweiwei/blog/388815" target="_blank" rel="external">真正的朋友</a></h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/stardew/true-friend/" data-id="cjiwsjhfo000ri2z6py49q8gi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/joy/">joy</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-who-loves-me" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/who-loves-me/" class="article-date">
-  <time datetime="2015-02-25T16:29:00.000Z" itemprop="datePublished">2015-02-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/who-loves-me/">who-loves-me</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="谁执我之手"><a href="#谁执我之手" class="headerlink" title="谁执我之手"></a>谁执我之手</h2><p>以前一直以为是仓央嘉措写的，但是今天看又有人说是一度君华写的，不管是谁写的了，只要是好诗就值得珍藏。  </p>
-<p>   谁，执我之手，敛我半世癫狂；<br>　　谁，吻我之眸，遮我半世流离；<br>　　谁，抚我之面，慰我半世哀伤；<br>　　谁，携我之心，融我半世冰霜；<br>　　伊，覆我之唇，祛我前世流离；<br>　　伊，揽我之怀，除我前世轻浮。<br>　　执子之手，陪你痴狂千生；<br>　　深吻子眸，伴你万世轮回。<br>　　我， 牵尔玉手， 收你此生所有；<br>　　我， 抚尔秀颈， 挡你此生风雨。<br>　　谁，扶我之肩，驱我一世沉寂。<br>　　谁，唤我之心，掩我一生凌轹。<br>　　谁，可明我意，使我此生无憾；<br>　　谁，可倾我心，寸土恰似虚弥；<br>　　伊，覆我之唇，祛我前世流离；<br>　　伊，揽我之怀，除我前世轻浮。<br>　　执子之手，共你一世风霜；<br>　　吻子之眸，赠你一世深情。<br>　　我， 牵尔玉手， 收你此生所有；<br>　　我， 抚尔秀颈， 挡你此生风雨。<br>　　我， 抚尔秀颈， 挡你此生风雨。  </p>
-<h5 id="转自谁执我之手"><a href="#转自谁执我之手" class="headerlink" title="转自谁执我之手"></a>转自<a href="https://my.oschina.net/luweiweiwei/blog/379917" target="_blank" rel="external">谁执我之手</a></h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/stardew/who-loves-me/" data-id="cjiwsjhfu000vi2z6cifnccds" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/joy/">joy</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mCustomScrollbar-config" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/mCustomScrollbar-config/" class="article-date">
-  <time datetime="2015-01-19T15:54:00.000Z" itemprop="datePublished">2015-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/mCustomScrollbar-config/">mCustomScrollbar-config</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="mCustomScrollbar常用配置"><a href="#mCustomScrollbar常用配置" class="headerlink" title="mCustomScrollbar常用配置"></a>mCustomScrollbar常用配置</h2><p>mCustomScrollbar是一个非常好用的滚动条插件，一般情况下只需作如下配置即可。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>,<span class="string">'mCustomScrollbar'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">$,mCustomScrollbar</span>)</span>&#123;</div><div class="line">    $(<span class="string">".submenu-content"</span>).mCustomScrollbar(&#123;</div><div class="line">        autoHideScrollbar: <span class="literal">true</span>,</div><div class="line">        horizontalScroll:<span class="literal">false</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.mCSB_scrollTools</span> <span class="selector-class">.mCSB_draggerRail</span>&#123;<span class="attribute">background-color</span>: <span class="number">#c6c4c2</span>;<span class="attribute">width</span>: <span class="number">8px</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.mCSB_scrollTools</span> <span class="selector-class">.mCSB_dragger</span> <span class="selector-class">.mCSB_dragger_bar</span>&#123;<span class="attribute">background-color</span>: <span class="number">#c6c4c2</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.mCSB_scrollTools</span> <span class="selector-class">.mCSB_dragger</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.mCSB_dragger_bar</span>,<span class="selector-class">.mCSB_scrollTools</span> <span class="selector-class">.mCSB_dragger</span><span class="selector-pseudo">:active</span> <span class="selector-class">.mCSB_dragger_bar</span>,<span class="selector-class">.mCSB_scrollTools</span> <span class="selector-class">.mCSB_dragger</span><span class="selector-class">.mCSB_dragger_onDrag</span> <span class="selector-class">.mCSB_dragger_bar</span> &#123;<span class="attribute">background-color</span>: <span class="number">#938B89</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.ui-state-default</span>&#123;<span class="attribute">background</span>:none;&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.accordion-hov</span>,<span class="selector-class">.accordion-click</span>&#123;<span class="attribute">background-color</span>:<span class="number">#6e8fd0</span>;<span class="attribute">color</span>:<span class="number">#ffc600</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.copyright</span>&#123;<span class="attribute">line-height</span>:<span class="number">30px</span>;<span class="attribute">background-color</span>:<span class="number">#a3a3a3</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.mCSB_scrollTools</span><span class="selector-class">.mCSB_scrollTools_horizontal</span> <span class="selector-class">.mCSB_draggerRail</span> &#123;<span class="attribute">height</span>: <span class="number">8px</span>;<span class="attribute">margin</span>: <span class="number">4px</span> <span class="number">0</span>;&#125;</div></pre></td></tr></table></figure>
-<h5 id="转自mCustomScrollbar常用配置"><a href="#转自mCustomScrollbar常用配置" class="headerlink" title="转自mCustomScrollbar常用配置"></a>转自<a href="https://my.oschina.net/luweiweiwei/blog/369341" target="_blank" rel="external">mCustomScrollbar常用配置</a></h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/stardew/mCustomScrollbar-config/" data-id="cjiwsjhep000ai2z6bead0tul" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -580,7 +102,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -591,7 +113,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/front/">front</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joy/">joy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/others/">others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li></ul>
     </div>
@@ -601,7 +123,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
       <a href="/tags/front/" style="font-size: 10px;">front</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/joy/" style="font-size: 16.67px;">joy</a> <a href="/tags/others/" style="font-size: 10px;">others</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vue/" style="font-size: 13.33px;">vue</a>
     </div>
@@ -620,7 +142,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -657,7 +179,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 lu.wei<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
