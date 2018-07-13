@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://github.com/stardew/main/</loc>
+        <lastmod>2018-07-13T05:37:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://github.com/stardew/who-loves-me/</loc>
         <lastmod>2018-06-28T11:15:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -161,14 +169,6 @@
     <url>
         <loc>https://github.com/stardew/mCustomScrollbar-config/</loc>
         <lastmod>2018-06-28T11:10:45.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://github.com/stardew/main/</loc>
-        <lastmod>2018-06-28T11:08:58.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
